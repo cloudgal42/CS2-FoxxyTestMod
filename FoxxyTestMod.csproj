@@ -5,6 +5,12 @@
 
         <!--The file where mod information which is required for publishing mod on PDX mods are stored-->
         <PublishConfigurationPath>Properties\PublishConfiguration.xml</PublishConfigurationPath>
+        <Version>0.1.0</Version>
+        <Title>Foxxy's Test Mod</Title>
+        <Authors>Foxxy</Authors>
+        <Description>Foxxy's Testing Mod, not for regular use</Description>
+        <Copyright>Copyright © 2025</Copyright>
+        <PDXAccountDataPath>"E:\Other code projects\PDX\pdx_account.txt"</PDXAccountDataPath>
     </PropertyGroup>
 
     <!--Imports must be after PropertyGroup block-->
@@ -69,5 +75,10 @@
         <None Include="$(ModPropsFile)" Link="Properties\Mod.props"/>
         <None Include="$(ModTargetsFile)" Link="Properties\Mod.targets"/>
     </ItemGroup>
-
+    <!-- Automatically build ModAssemblyInfo.cs file. -->
+    <Import Project="ModAssemblyInfo\ModAssemblyInfo.csproj" />
+    <ItemGroup>
+        <None Include="ModAssemblyInfo\ModAssemblyInfo.csproj" />
+    </ItemGroup>
+    
 </Project>
