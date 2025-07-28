@@ -7,10 +7,11 @@
         <PublishConfigurationPath>Properties\PublishConfiguration.xml</PublishConfigurationPath>
         <Version>0.1.0</Version>
         <Title>Foxxy's Test Mod</Title>
-        <Authors>Foxxy</Authors>
+        <Authors>Foxxyfly</Authors>
         <Description>Foxxy's Testing Mod, not for regular use</Description>
         <Copyright>Copyright © 2025</Copyright>
-        <PDXAccountDataPath>"E:\Other code projects\PDX\pdx_account.txt"</PDXAccountDataPath>
+        <PDXAccountDataPath>E:\Other code projects\PDX\pdx_account.txt</PDXAccountDataPath>
+        <DefaultItemExcludes>UI\node_modules\**;$(DefaultItemExcludes)</DefaultItemExcludes>
     </PropertyGroup>
 
     <!--Imports must be after PropertyGroup block-->
@@ -80,5 +81,13 @@
     <ItemGroup>
         <None Include="ModAssemblyInfo\ModAssemblyInfo.csproj" />
     </ItemGroup>
-    
+    <!-- Automatically build mod.json file. -->
+    <Import Project="UI\mod.json.csproj" />
+    <ItemGroup>
+        <None Include="UI\mod.json.csproj" />
+    </ItemGroup>
+    <!-- Automatically build the UI with the project. -->
+    <Target Name="BuildUI" AfterTargets="AfterBuild">
+        <Exec Command="npm run build" WorkingDirectory="$(ProjectDir)/UI" />
+    </Target>
 </Project>
